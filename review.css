@@ -1,0 +1,201 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c5469;
+  padding: 0px 10px;
+}
+
+.logo {
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.logo img {
+  width: 300px;
+  margin-bottom: -40px;
+}
+
+/* Navigation button styles */
+.nav-buttons {
+  display: flex;
+  gap: 10px; /* Jarak antar tombol navigasi */
+}
+
+.nav-btn {
+  background-color: #c49a6c; /* Warna tombol */
+  padding: 10px 15px; /* Padding tombol */
+  border: none; /* Tanpa border */
+  border-radius: 5px; /* Sudut melengkung tombol */
+  cursor: pointer; /* Tanda kursor pointer */
+  font-weight: bold; /* Teks tebal */
+  color: white; /* Warna teks tombol */
+}
+
+/* Link styles */
+a {
+  text-decoration: none; /* Tanpa garis bawah */
+  color: white; /* Warna teks tautan */
+}
+
+/* Container styles */
+.container {
+  max-width: 1226px; /* Lebar maksimum kontainer */
+  margin: 20px auto; /* Margin otomatis untuk pusat */
+  height: auto; /* Tinggi otomatis */
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: #c49a6c;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Rating Box */
+.rating-box {
+  display: flex;
+  align-items: center;
+  background: #1f3d5a;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  justify-content: center;
+}
+
+.rating-box .rating {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.rating-box .stars {
+  color: gold;
+  margin-left: 10px;
+}
+
+/* Review Bars */
+.review-bars {
+  margin-top: 20px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.bar span {
+  width: 30px;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.bar .progress {
+  flex: 1;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  position: relative;
+}
+
+.bar .progress div {
+  height: 100%;
+  background: gold;
+  border-radius: 5px;
+}
+
+/* Comment Box */
+.comment-box {
+  margin-top: 30px;
+}
+
+.comment-box textarea {
+  width: 98%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.submit-btn {
+  background: #1f3d5a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #ffd700;
+  color: #1f3d5a;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  background: #1f3d5a;
+  color: white;
+  padding: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+  
+.back-container {
+  background-color: #2c5469;
+  padding: 20px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.back-btn {
+  color: white;
+  border: none;
+  background-color: #2c5469;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 16px;
+}
+
+.btn.btn-primary{
+  color: white;
+  background-color: #c49a6c;
+  border: none;
+  width: 90px;
+  height: 30px;
+  border-radius: 3px;
+  margin-top: 15px;
+  float: right;
+  margin-right: 20px;
+}

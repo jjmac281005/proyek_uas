@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="common1.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <img src=" gambar/background.jpg" alt="Website Logo" class="background-image">
+    <div class="container">
+        <h2>Log In</h2>
+        <div class="login-box">
+            <!-- Logo Website -->
+            <img src="gambar/single_logo.png" alt="Website Logo" class="logo">
+
+            <!-- Form -->
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p>Don't have an account? <a href="sign_up.html">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah submit default
+
+            // Validasi input
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            if (email !== "" && password !== "") {
+                // Jika semua input sudah diisi, arahkan ke dashboard_main.html
+                window.location.href = "dashboard_main.html";
+            } else {
+                alert("Please fill in all fields correctly.");
+            }
+        });
+    </script>
+</body>
+</html>

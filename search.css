@@ -1,0 +1,92 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c5469;
+    padding: 0px 20px;
+}
+
+.logo {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 300px;
+    margin-bottom: -40px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background-color: #c49a6c;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color : white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+input.form-control{
+    width : 1008px;
+    margin-top: 20px;
+}
+
+div.input-group.align-items-center.ms-5{
+    padding-left: 20px;
+}
+
+.container {
+    max-width: 1226px;
+    margin: 20px auto;
+    height: auto;
+}
+.kafe-box {
+    display: flex;
+    align-items: center;
+    background-color: #8B6F4E;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: black;
+}
+.logo-kafe {
+    width: 150px;
+    height: 150px;
+    background-color: #D7B16D; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+.info-kafe {
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.input-group .form-control,
+.input-group .form-select,
+.input-group .btn {
+    height: 45px;
+}
+

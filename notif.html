@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="notif.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+        <div class="nav-buttons">
+            <button class="nav-btn"><a href="search.html">search</a></button>
+            <button class="nav-btn"><a href="notif.html">notif</button></a>
+            <button class="nav-btn"><a href="profile.html">profile</button></a>
+        </div>
+    </header>
+    <div class="container mt-4">
+        <!-- Bar Judul Notification -->
+        <div class="notif-title mb-3">Notification</div>
+    
+        <!-- Tiga Bar Notifikasi -->
+        <div class="notif-item notif-success">
+            <span class="notif-icon">✅</span>
+            Reservasi di <strong>Alligator Cafe</strong> pada 5 Maret 2025 pukul 19:00 <strong>berhasil</strong>. Kami menunggu kedatangan Anda!
+        </div>
+
+        <!-- Notifikasi Reservasi Gagal -->
+        <div class="notif-item notif-failed">
+            <span class="notif-icon">❌</span>
+            Reservasi di <strong>Koora Cafe</strong> pada 6 Maret 2025 pukul 20:00 <strong>gagal</strong>. Silakan coba waktu lain atau hubungi pihak kafe.
+        </div>
+
+        <!-- Notifikasi Reservasi Sedang Diproses -->
+        <div class="notif-item notif-pending">
+            <span class="notif-icon">⏳</span>
+            Reservasi di <strong>Omotesando Cafe</strong> pada 7 Maret 2025 pukul 18:30 sedang <strong>diproses</strong>. Mohon tunggu konfirmasi lebih lanjut.
+        </div>
+      </div>
+    </body>
+    </html>

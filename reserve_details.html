@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Details</title>
+    <link rel="stylesheet" href="reserve_details.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+        <div class="nav-buttons">
+            <button class="nav-btn"><a href="search.html">search</a></button>
+            <button class="nav-btn"><a href="notif.html">notif</button></a>
+            <button class="nav-btn"><a href="profile.html">profile</button></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Logo Kafe -->
+            <div class="col-md-3">
+                <div class="logo-kafe">Logo Kafe</div>
+            </div>
+        </div>
+
+    <div class="col-md-8 justify-contend-end">
+        <div class="info-box">Nama Pelanggan</div>
+        <div class="info-box">Nomor Reservasi</div>
+        <div class="info-box">Tanggal & Waktu</div>
+        <div class="info-box">Nomor Meja</div>
+        <div class="info-box">Status Reservasi</div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Reserve Button -->
+    <div class="cancel-container">
+        <button class="btn btn-cancel">Cancel</button>
+    </div>
+
+    <!-- Back to Dashboard -->
+    <div class="back-container">
+        <button class="btn btn-back" onclick="goToDetails('123')">Back to Dashboard</button>
+    </div>
+
+    <script>
+        function goToDetails(kafeId) {
+    window.location.href = `dashboard_main.html?id=${kafeId}`;
+}
+</script>
+
+</body>
+</html>

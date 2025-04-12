@@ -1,0 +1,87 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #34566E; /* Warna biru tua */
+    color: white;
+    position: relative;
+    z-index: 10; /* Navbar tetap di atas */
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: lightgray;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 15px;
+    background-color: #8B6F47; /* Warna coklat */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #A58960; /* Warna coklat lebih terang */
+}
+
+/* Background image */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Background tetap di belakang */
+}
+
+/* Logo dalam lingkaran */
+.logo-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek hover untuk memperbesar logo */
+.logo-container:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Gambar logo di dalam lingkaran */
+.logo-img {
+    width: 260px;
+    height: 260px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}

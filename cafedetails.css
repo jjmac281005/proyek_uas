@@ -1,0 +1,176 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c5469;
+    padding: 0px 20px;
+}
+
+.logo {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 300px;
+    margin-bottom: -40px;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background-color: #c49a6c;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color : white;
+}
+
+.btn-custom {
+    background-color: #c49a6c;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.logo-kafe {
+    width: 250px;
+    height: 250px;
+    background-color: #c49a6c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 10px;
+    margin : 20px;
+}
+
+.info-box {
+    background-color: #8b6f4e;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    width : 920px;
+}
+
+/* Photo Section */
+.photo-title {
+    background-color: #8b6f4e;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    color: white;
+}
+
+.photo-box {
+    background-color: #c49a6c;
+    padding: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Reserve Button */
+.reserve-container {
+    background-color: #2c5469;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-reserve {
+    color: white;
+    padding: 15px 30px;
+    font-size: 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    background-color: #2c5469;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.col-md-8{
+    float: right;
+    margin-top: -270px;
+    margin-right: 20px;
+}
+
+.photo-title{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Wrapper untuk scrolling horizontal */
+.scroll-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+/* Container untuk box horizontal */
+.content {
+    display: flex;
+    gap: 45px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 85%;
+}
+
+/* Style untuk tiap box */
+.content-box {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Tombol Next & Previous */
+.prev-btn, .next-btn {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.prev-btn{
+    margin-right: 20px;
+}
+
+.next-btn{
+    margin-left: 44px;
+}

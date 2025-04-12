@@ -1,0 +1,36 @@
+/* Kotak utama sign up */
+.signup-box {
+    background-color: #36596a; /* Warna biru tua */
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+/* Background gambar di Sign Up */
+.background {
+    background-color: #d2aa6d; /* Warna coklat muda */
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Logo kecil di kiri atas */
+.logo-small {
+    background-color: #8c6f4d; /* Warna coklat tua */
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.sign-up{
+    color: white;
+}
+
+.logosignup {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 15px;
+}

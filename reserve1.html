@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Reservation 1</title>
+      <link rel="stylesheet" href="reserve1.css">
+  </head>
+  <body>
+      <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>          
+        <div class="nav-buttons">
+              <button class="nav-btn"><a href="search.html">search</a></button>
+              <button class="nav-btn"><a href="notif.html">notif</button></a>
+              <button class="nav-btn"><a href="profile.html">profile</button></a>
+          </div>
+      </header>
+
+    <div class="container mt-3">
+        <div class="mb-3">
+            <div class="bg-brown p-2 text-white" id="cafe-name">Alligator Cafe</div>
+        </div>
+        <div class="container-custom">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <div class="section-label kasir-label">kasir</div>
+                </div>
+                <div class="col-10">
+                    <!-- Empat Baris Kursi, tiap baris: (2 merah kiri) + (2 merah tengah) + (2 hijau kanan) -->
+                    <div class="row-of-seats row mb-3" id="baris1">
+                      <div class="col-4 text-end">
+                        <div class="seat seat-green" data-seat="01"></div>
+                        <div class="seat seat-green" data-seat="02"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="03"></div>
+                        <div class="seat seat-red" data-seat="04"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="05"></div>
+                        <div class="seat seat-red" data-seat="06"></div>
+                      </div>
+                      <div class="col-4 text-start">
+                        <div class="seat seat-green" data-seat="07"></div>
+                        <div class="seat seat-green" data-seat="08"></div>
+                      </div>
+                    </div>
+          
+                    <!-- Baris 2 -->
+                    <div class="row-of-seats row mb-3" id="baris2">
+                      <div class="col-4 text-end">
+                        <div class="seat seat-red" data-seat="09"></div>
+                        <div class="seat seat-red" data-seat="10"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="11"></div>
+                        <div class="seat seat-red" data-seat="12"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="13"></div>
+                        <div class="seat seat-red" data-seat="14"></div>
+                      </div>
+                      <div class="col-4 text-start">
+                        <div class="seat seat-green" data-seat="15"></div>
+                        <div class="seat seat-green" data-seat="16"></div>
+                      </div>
+                    </div>
+          
+                    <!-- Baris 3 -->
+                    <div class="row-of-seats row mb-3" id="baris3">
+                      <div class="col-4 text-end">
+                        <div class="seat seat-red" data-seat="17"></div>
+                        <div class="seat seat-red" data-seat="18"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="19"></div>
+                        <div class="seat seat-red" data-seat="20"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-green" data-seat="21"></div>
+                        <div class="seat seat-green" data-seat="22"></div>
+                      </div>
+                      <div class="col-4 text-start">
+                        <div class="seat seat-red" data-seat="23"></div>
+                        <div class="seat seat-red" data-seat="24"></div>
+                      </div>
+                    </div>
+          
+                    <!-- Baris 4 -->
+                    <div class="row-of-seats row mb-3" id="baris4">
+                      <div class="col-4 text-end">
+                        <div class="seat seat-red" data-seat="25"></div>
+                        <div class="seat seat-red" data-seat="26"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-green" data-seat="27"></div>
+                        <div class="seat seat-green" data-seat="28"></div>
+                      </div>
+                      <div class="col-4 text-center">
+                        <div class="seat seat-red" data-seat="29"></div>
+                        <div class="seat seat-red" data-seat="30"></div>
+                      </div>
+                      <div class="col-4 text-start">
+                        <div class="seat seat-green" data-seat="31"></div>
+                        <div class="seat seat-green" data-seat="32"></div>
+                      </div>
+                    </div>
+                <div class="col-1 d-flex align-items-center flex-column">
+                    <div class="section-label toilet-label">toilet</div>
+                </div>
+            </div>
+            <div class="text-start mt-2">
+              <div class="section-label pintu-label">pintu</div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Pop-up Konfirmasi -->
+    <div id="confirmation-popup" class="confirmation-popup">
+      <div class="popup-content">
+          <p>Sure to reserve?</p>
+          <button id="yes-btn">Yes</button>
+          <button id="no-btn">No</button>
+      </div>
+    </div>
+
+    <!-- Pop-up Time -->
+    <div id="time-popup" class="confirmation-popup">
+      <div class="popup-content">
+          <h3>Choose Time</h3>
+          <label for="time-from">From:</label>
+          <input type="time" id="time-from">
+          <label for="time-to">To:</label>
+          <input type="time" id="time-to">
+          <br>
+          <button id="next-btn">Next</button>
+      </div>
+    </div>
+
+    <!-- Pop-up Congrats -->
+    <div id="congratsPopup" class="confirmation-popup" style="display: none;">
+      <div class="popup-content">
+          <h3>Congrats!</h3>
+          <p>Your reservation has been confirmed!</p>
+          <p><strong>Seat:</strong> <span id="reserved-seat"></span></p>
+          <p><strong>Cafe:</strong> <span id="reserved-cafe-name"></span></p> <!-- Nama Cafe Ditampilkan di sini -->
+          <p><strong>Reservation Time:</strong> <span id="reserved-time"></span></p>
+          <button id="back-to-dashboard">Back to Dashboard</button>
+      </div>
+    </div>
+
+    <script>
+      // Mendapatkan elemen-elemen kursi dan pop-up
+      const seats = document.querySelectorAll('.seat-green');
+      const cafeNameElement = document.getElementById('cafe-name'); // Elemen yang menyimpan nama cafe
+      const reservedCafeElement = document.getElementById('reserved-cafe-name'); // Elemen di pop-up yang menampilkan nama cafe
+      const confirmationPopup = document.getElementById('confirmation-popup');
+      const timePopup = document.getElementById('time-popup');
+      const congratsPopup = document.getElementById('congratsPopup'); // Sesuaikan ID dengan yang ada di HTML
+      const yesButton = document.getElementById('yes-btn');
+      const noButton = document.getElementById('no-btn');
+      const nextButton = document.getElementById('next-btn');
+      const backToDashboardButton = document.getElementById('back-to-dashboard');
+      let selectedSeat = null;
+
+      // Fungsi untuk menampilkan pop-up konfirmasi
+      seats.forEach(seat => {
+          seat.addEventListener('click', function() {
+              selectedSeat = seat.getAttribute('data-seat'); // Menyimpan kursi yang dipilih
+              confirmationPopup.style.display = 'flex'; // Menampilkan pop-up konfirmasi
+          });
+      });
+
+      // Menangani tombol "Yes" dari pop-up konfirmasi
+      yesButton.addEventListener('click', function() {
+          confirmationPopup.style.display = 'none'; // Menyembunyikan pop-up konfirmasi
+          timePopup.style.display = 'flex'; // Menampilkan pop-up waktu
+      });
+
+      // Menangani tombol "No" dari pop-up konfirmasi
+      noButton.addEventListener('click', function() {
+          confirmationPopup.style.display = 'none'; // Menyembunyikan pop-up konfirmasi
+      });
+
+      // Menangani tombol "Next" dari pop-up waktu
+      nextButton.addEventListener('click', function() {
+          const timeFrom = document.getElementById('time-from').value;
+          const timeTo = document.getElementById('time-to').value;
+          if (timeFrom && timeTo) {
+              timePopup.style.display = 'none'; // Menyembunyikan pop-up waktu
+
+              // Menampilkan pop-up Congrats dengan data yang sesuai
+              const reservedSeat = selectedSeat;  // Ambil data kursi yang dipilih
+              // Ambil nama cafe dari elemen #cafe-name
+              const cafeName = cafeNameElement.textContent || cafeNameElement.innerText; // Nama cafe dari elemen HTML
+              
+              // Tampilkan nama cafe di pop-up
+              reservedCafeElement.textContent = cafeName; // Ini memastikan nama cafe ditampilkan di pop-up
+              const reservedTime = `${timeFrom} to ${timeTo}`;
+
+              // Menampilkan data ke dalam pop-up Congrats
+              document.getElementById('reserved-seat').textContent = reservedSeat;
+              document.getElementById('reserved-cafe-name').textContent = cafeName;
+              document.getElementById('reserved-time').textContent = reservedTime;
+
+              congratsPopup.style.display = 'flex'; // Menampilkan pop-up Congrats
+          } else {
+              alert("Please select both 'From' and 'To' time.");
+          }
+      });
+
+      // Menangani tombol "Back to Dashboard" dari pop-up Congrats
+      backToDashboardButton.addEventListener('click', function() {
+          window.location.href = 'dashboard_2.html'; // Mengarahkan pengguna kembali ke halaman Dashboard
+      });
+    </script>
+  </body>
+</html>

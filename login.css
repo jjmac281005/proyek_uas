@@ -1,0 +1,14 @@
+/* Kotak utama login */
+.login-box {
+    background-color: #36596a; /* Warna biru tua */
+    padding: 30px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+/* Logo Website di Login */
+.logo {
+    width: 30%;
+    height: 30%;
+    margin-bottom: 15px;
+}

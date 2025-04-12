@@ -1,0 +1,138 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c5469;
+    padding: 0px 20px;
+}
+
+.logo {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 300px;
+    margin-bottom: -40px;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background-color: #c49a6c;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color : white;
+}
+
+.btn-custom {
+    background-color: #c49a6c;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.logo-kafe {
+    width: 250px;
+    height: 250px;
+    background-color: #c49a6c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 10px;
+    margin : 20px;
+}
+
+.info-box {
+    background-color: #8b6f4e;
+    padding: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    width : 920px;
+}
+
+/* Photo Section */
+.photo-title {
+    background-color: #8b6f4e;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    color: white;
+}
+
+.photo-box {
+    background-color: #c49a6c;
+    padding: 50px;
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Reserve Button */
+.cancel-container {
+    background-color: red;
+    height:20px;
+    width: 20px;
+    text-align: center;
+    margin-top: 90px;
+    margin-left: 1170px;
+}
+
+.btn-cancel {
+    color: white;
+    padding: 15px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.back-container{
+    background-color: #2c5469;
+    text-align: center;
+    margin-top: 70px;
+    height: 66px;
+}
+
+.btn-back{
+    color: white;
+    border: none;
+    background-color: #2c5469;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 16px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.col-md-8{
+    float: right;
+    margin-top: -270px;
+    margin-right: 20px;
+}

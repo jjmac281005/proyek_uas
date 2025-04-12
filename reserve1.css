@@ -1,0 +1,223 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c5469;
+    padding: 0px 20px;
+}
+
+.logo {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 300px;
+    margin-bottom: -40px;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background-color: #c49a6c;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color : white;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.container-custom {
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 590px;
+    max-height: 200vh;
+}
+
+.bg-brown {
+    color: black;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-weight: 400;
+    width: 600px;
+}
+
+.row {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+/* Menambah jarak antar baris kursi */
+.row-of-seats + .row-of-seats {
+    margin-top: 100px;
+}
+
+.col-4 {
+    display: flex;
+    gap: 30px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .col-10 {
+    display: block;
+    margin-top: 30px;
+    width: 1000px;
+    justify-content: space-between;
+    align-content: space-between;
+  }
+  
+  /* Kursi Merah -> Hover jadi Hijau */
+  .seat-red {
+    background-color: #E05757;
+  }
+  .seat-green:hover {
+    background-color: #E05757;
+  }
+  
+  /* Kursi Hijau (bisa hover ke warna lain jika mau) */
+  .seat-green {
+    background-color: #82EB86;
+  }
+
+.section-label {
+    background-color: #203b58;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.bg-brown.p-2.text-white{
+    margin: 20px;
+    height: 30px;
+    text-align: left;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.kasir-label{
+    height: 100px;
+    width: 40px;
+    margin-top: 200px;
+    align-content: center;
+}
+
+/* Atur posisi relative untuk container utama */
+.container-custom {
+    position: relative;
+}
+
+/* Atur posisi untuk pintu di pojok kiri bawah */
+.pintu-label {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    color: white;
+    width: 100px;
+    padding: 5px;
+}
+
+/* Atur posisi untuk toilet di pojok kanan atas */
+.toilet-label {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: white;
+    padding: 5px;
+    width: 100px;
+}
+
+
+/* Pop-up styling */
+.confirmation-popup {
+    display: none; /* Menyembunyikan pop-up */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #203b58;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 400px;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #2c5469;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.popup-content button:hover {
+    background-color: #c49a6c;
+    color: #203b58;
+}
+
+h3 {
+    margin-bottom: 15px;
+    color: #c49a6c;
+}
+
+input[type="time"] {
+    margin: 10px 0;
+}
+
+#back-to-dashboard {
+    width: 200px;
+}
+
+.container{
+    margin-top: -15px;
+}

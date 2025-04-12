@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite</title>
+    <link rel="stylesheet" href="recommendations.css">
+    <style>
+        .logo-kafe {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-kafe img {
+            width: 150px; 
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5%; /* Agar gambar menjadi lingkaran */
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+        <div class="nav-buttons">
+            <button class="nav-btn"><a href="search.html">search</a></button>
+            <button class="nav-btn"><a href="notif.html">notif</button></a>
+            <button class="nav-btn"><a href="profile.html">profile</button></a>
+        </div>
+
+    </header>
+    <div class="container mt-4">
+        <div class="notif-title mb-3">Favorites</div>
+    <div class="container">
+        <div class="kafe-box" onclick="goToDetails('123')">
+            <div class="logo-kafe">
+                <img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Kafe 123">
+            </div>
+            <div class="info-kafe">
+                <div class="kafe-name">Alligator Cafe</div>
+                <div class="kafe-address">Jl. Kenanga No.17, Hamdan, Kec. Medan Maimun, Kota Medan, Sumatera Utara 20132, Indonesia</div>
+                <div class="kafe-rating">⭐ 4.5/5</div>
+                <div class="kafe-cuisine">Cuisine: American Cuisine</div>
+            </div>
+        </div>
+        <div class="kafe-box">
+            <div class="logo-kafe">
+                <img src="gambar/KOORA/LOGO.png" alt="Kafe 2">
+            </div>
+            <div class="info-kafe">
+                <div class="kafe-name">Koora Cafe</div>
+                <div class="kafe-address">Jl. Sei Besitang No.6, Sei Sikambing D, Kec. Medan Petisah, Kota Medan, Sumatera Utara 20111</div>
+                <div class="kafe-rating">⭐ 4.2/5</div>
+                <div class="kafe-cuisine">Cuisine: Korean Cuisine</div>
+            </div>
+        </div>
+        <div class="kafe-box">
+            <div class="logo-kafe">
+                <img src="gambar/OMOTESANDO/LOGO.jpeg" alt="Kafe 3">
+            </div>
+            <div class="info-kafe">
+                <div class="kafe-name">Omotesando Cafe</div>
+                <div class="kafe-address">Jl. Letjen Suprapto No.13, Hamdan, Kec. Medan Maimun, Kota Medan, Sumatera Utara 20212</div>
+                <div class="kafe-rating">⭐ 4.8/5</div>
+                <div class="kafe-cuisine">Cuisine: Japanese Cuisine</div>
+            </div>
+        </div>
+        <div class="kafe-box">
+            <div class="logo-kafe">
+                <img src="gambar/POTTE/LOGO.jpeg" alt="Kafe 4">
+            </div>
+            <div class="info-kafe">
+                <div class="kafe-name">Potte Cafe</div>
+                <div class="kafe-address">Jl. Dr. Mansyur No.98, Padang Bulan Selayang I, Kec. Medan Selayang, Kota Medan, Sumatera Utara 20153</div>
+                <div class="kafe-rating">⭐ 4.3/5</div>
+                <div class="kafe-cuisine">Cuisine: Italian Cuisine</div>
+            </div>
+        </div>
+        <div class="kafe-box">
+            <div class="logo-kafe">
+                <img src="gambar/THIRTY SIX/LOGO.jpeg" alt="Kafe 5">
+            </div>
+            <div class="info-kafe">
+                <div class="kafe-name">Thirty Six Cafe</div>
+                <div class="kafe-address">Jl. Multatuli No.36, Hamdan, Medan Maimun, Kota Medan, Sumatera Utara 20151</div>
+                <div class="kafe-rating">⭐ 4.7/5</div>
+                <div class="kafe-cuisine">Cuisine: American Cuisine</div>
+            </div>
+        </div>
+    </div>

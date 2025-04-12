@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Details</title>
+    <link rel="stylesheet" href="cafedetails.css">
+    <style>
+        .logo-kafe {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-kafe img {
+            width: 250px; 
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5%; /* Agar gambar menjadi lingkaran */
+        }
+
+        .content-box {
+        width: 150px; /* Pastikan ukuran content-box tetap sama */
+        height: 150px;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        text-align: center;
+        padding: 5px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Mencegah gambar keluar dari content-box */
+    }
+
+    .content-box img {
+        max-width: 100%; /* Agar gambar tidak melebihi ukuran content-box */
+        max-height: 100%; /* Menjaga proporsi gambar di dalam content-box */
+        object-fit: cover; /* Menjaga tampilan gambar tetap rapi */
+        border-radius: 5px; /* Opsional, agar gambar memiliki sudut melengkung */
+    }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+        <div class="nav-buttons">
+            <button class="nav-btn"><a href="search.html">search</a></button>
+            <button class="nav-btn"><a href="notif.html">notif</button></a>
+            <button class="nav-btn"><a href="profile.html">profile</button></a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Logo Kafe -->
+            <div class="col-md-3">
+                <div class="logo-kafe">
+                    <img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Kafe 123"></div>
+            </div>
+        </div>
+
+    <div class="col-md-8 justify-contend-end">
+        <div class="info-box">Alligator Cafe</div>
+        <div class="info-box">Jl. Kenanga No.17, Hamdan, Kec. Medan Maimun, Kota Medan, Sumatera Utara 20132, Indonesia</div>
+        <div class="info-box" onclick="goToReview('review.html')" >⭐ 4.5/5</div>
+        <div class="info-box">American Cuisine</div>
+        </div>
+    </div>
+            
+        <div class="mt-4">
+            <div class="photo-title">Photos:</div>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.09.jpeg" alt="Photo 1">
+                    </div>
+                    <div class="content-box">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 2">
+                    </div>
+                    <div class="content-box">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.11.jpeg" alt="Photo 4">
+                    </div>
+                    <div class="content-box">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 18.04.41.jpeg" alt="Photo 5">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
+            </div>
+        </section>
+        </div>
+    </div>
+
+    <!-- Reserve Button -->
+    <div class="reserve-container">
+        <button class="btn btn-reserve" onclick="goToReserve('reserve1.html')">Reserve</button>
+    </div>
+
+    <script>
+        function goToReserve(kafeId) {
+    window.location.href = `reserve1.html?id=${kafeId}`;
+}
+        function goToReview(kafeId) {
+    window.location.href = `review.html?id=${kafeId}`;
+}
+    </script>
+</body>
+</html>
+
+
+
+
+
