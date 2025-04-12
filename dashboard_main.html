@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Main</title>
+    <link rel="stylesheet" href="dashboard_main.css">
+    <style>
+       .content-box {
+            width: 150px;
+            height: 150px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            overflow: hidden;
+            margin: 30px;
+            cursor: pointer; /* Supaya terlihat bisa diklik */
+            transition: transform 0.2s;
+        }
+
+        .content-box:hover {
+            transform: scale(1.05);
+        }
+
+        .content-box img {
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: cover; 
+            border-radius: 8px;
+        }
+
+        .content {
+            display: flex;
+            gap: 30px; 
+            overflow-x: auto; 
+            padding: 10px;
+        }
+
+        .scroll-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .prev-btn, .next-btn {
+            background-color: #ccc;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+        <div class="nav-buttons">
+            <button class="nav-btn"><a href="search.html">search</a></button>
+            <button class="nav-btn"><a href="notif.html">notif</a></button>
+            <button class="nav-btn"><a href="profile.html">profile</a></button>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="content-section">
+            <h2>No reservations</h2>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="content-section" onclick="goToDetails('recommendations')">
+            <h2>Recommendations</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Recent Visits Section -->
+        <section class="content-section" onclick="goToDetails('recent')">
+            <h2>Recent visits</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Favorite Section -->
+        <section class="content-section" onclick="goToDetails('favorite')">
+            <h2>Favorites</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function goToDetails(category) {
+            window.location.href = `${category}.html`;
+        }
+    </script>
+</body>
+</html>
