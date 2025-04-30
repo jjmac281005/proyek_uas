@@ -12,3 +12,11 @@
     height: 30%;
     margin-bottom: 15px;
 }
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
