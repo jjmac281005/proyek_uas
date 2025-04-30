@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: black;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c5469;
+    padding: 0px 20px;
+    top: 0;
+    width: 97%;
+    z-index: 1000;
+}
+
+.nav-btn {
+    background-color: #2c5469;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color : white;
+}
+
+.logo {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.logo img {
+    width: 300px;
+    margin-bottom: -40px;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-container {
+    width: 90%;
+  }
+  
+  .edit-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 30px;
+    gap: 40px;
+    margin: 30px;
+    margin-left: 140px;
+  }
+  
+  .logo-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-section img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .logo-section input[type="file"] {
+    font-size: 0.9rem;
+  }
+  
+  .form-section {
+    flex: 2;
+  }
+  
+  .form-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+
+  #logo-upload{
+    margin-left: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="tel"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .form-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .form-buttons button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #2c3e50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .forms-buttons button:hover{
+    background-color: #c49a6c;
+  }

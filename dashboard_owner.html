@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Main</title>
+    <link rel="stylesheet" href="dashboard_owner.css">
+</head>
+<body>
+        <header class="navbar">
+            <div class="logo"><a href="dashboard_owner.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+            <div class="nav-buttons">
+                <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+                <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+            </div>
+        </header>
+
+        <div class="container mt-3">
+            <div class="mb-3 d-flex justify-between align-center">
+                <div class="bg-brown p-2 text-white" id="cafe-name">Alligator Cafe</div>
+            </div>
+            <div class="container-custom">
+                <div class="row">
+                    <div class="col-1 d-flex align-items-center">
+                        <div class="section-label kasir-label">kasir</div>
+                    </div>
+                    <div class="col-10">
+                        <!-- Empat Baris Kursi -->
+                        <!-- Baris 1 -->
+                        <div class="row-of-seats row mb-3" id="baris1">
+                          <div class="col-4 text-end">
+                            <div class="seat seat-green" data-seat="01"></div>
+                            <div class="seat seat-green" data-seat="02"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="03"></div>
+                            <div class="seat seat-red" data-seat="04"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="05"></div>
+                            <div class="seat seat-red" data-seat="06"></div>
+                          </div>
+                          <div class="col-4 text-start">
+                            <div class="seat seat-green" data-seat="07"></div>
+                            <div class="seat seat-green" data-seat="08"></div>
+                          </div>
+                        </div>
+              
+                        <!-- Baris 2 -->
+                        <div class="row-of-seats row mb-3" id="baris2">
+                          <div class="col-4 text-end">
+                            <div class="seat seat-red" data-seat="09"></div>
+                            <div class="seat seat-red" data-seat="10"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="11"></div>
+                            <div class="seat seat-red" data-seat="12"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="13"></div>
+                            <div class="seat seat-red" data-seat="14"></div>
+                          </div>
+                          <div class="col-4 text-start">
+                            <div class="seat seat-green" data-seat="15"></div>
+                            <div class="seat seat-green" data-seat="16"></div>
+                          </div>
+                        </div>
+              
+                        <!-- Baris 3 -->
+                        <div class="row-of-seats row mb-3" id="baris3">
+                          <div class="col-4 text-end">
+                            <div class="seat seat-red" data-seat="17"></div>
+                            <div class="seat seat-red" data-seat="18"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="19"></div>
+                            <div class="seat seat-red" data-seat="20"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-green" data-seat="21"></div>
+                            <div class="seat seat-green" data-seat="22"></div>
+                          </div>
+                          <div class="col-4 text-start">
+                            <div class="seat seat-red" data-seat="23"></div>
+                            <div class="seat seat-red" data-seat="24"></div>
+                          </div>
+                        </div>
+              
+                        <!-- Baris 4 -->
+                        <div class="row-of-seats row mb-3" id="baris4">
+                          <div class="col-4 text-end">
+                            <div class="seat seat-red" data-seat="25"></div>
+                            <div class="seat seat-red" data-seat="26"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-green" data-seat="27"></div>
+                            <div class="seat seat-green" data-seat="28"></div>
+                          </div>
+                          <div class="col-4 text-center">
+                            <div class="seat seat-red" data-seat="29"></div>
+                            <div class="seat seat-red" data-seat="30"></div>
+                          </div>
+                          <div class="col-4 text-start">
+                            <div class="seat seat-green" data-seat="31"></div>
+                            <div class="seat seat-green" data-seat="32"></div>
+                          </div>
+                        </div>
+                    <div class="col-1 d-flex align-items-center flex-column">
+                        <div class="section-label toilet-label">toilet</div>
+                    </div>
+                </div>
+                <div class="text-start mt-2">
+                  <div class="section-label pintu-label">pintu</div>
+              </div>
+            </div>
+        </div>
+        
+        <!-- Pop-up Konfirmasi -->
+<div id="confirmation-popup" class="confirmation-popup" style="display: none;">
+    <div class="popup-content">
+        <p>Sure to reserve?</p>
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+  </div>
+
+  <!-- Pop-up Nama -->
+<div id="name-popup" class="confirmation-popup" style="display: none;">
+    <div class="popup-content">
+        <h3>Enter Your Name</h3>
+        <label for="customer-name">Name:</label>
+        <input type="text" id="customer-name" placeholder="e.g., John Doe">
+        <br>
+        <button id="name-next-btn">Next</button>
+    </div>
+  </div>
+  
+  <!-- Pop-up Tanggal -->
+  <div id="date-popup" class="confirmation-popup" style="display: none;">
+    <div class="popup-content">
+        <h3>Choose Date</h3>
+        <label for="reservation-date">Date:</label>
+        <input type="date" id="reservation-date">
+        <br>
+        <button id="date-next-btn">Next</button>
+    </div>
+  </div>
+  
+  <!-- Pop-up Time -->
+  <div id="time-popup" class="confirmation-popup" style="display: none;">
+    <div class="popup-content">
+        <h3>Choose Time</h3>
+        <label for="time-from">From:</label>
+        <input type="time" id="time-from">
+        <label for="time-to">To:</label>
+        <input type="time" id="time-to">
+        <br>
+        <button id="time-next-btn">Next</button>
+    </div>
+  </div>
+  
+  <!-- Pop-up Congrats -->
+  <div id="congratsPopup" class="confirmation-popup" style="display: none;">
+    <div class="popup-content">
+        <h3>Congrats!</h3>
+        <p>Your reservation has been confirmed!</p>
+        <p><strong>Name:</strong> <span id="reserved-name"></span></p>
+        <p><strong>Seat:</strong> <span id="reserved-seat"></span></p>
+        <p><strong>Cafe:</strong> <span id="reserved-cafe-name"></span></p>
+        <p><strong>Reservation Time:</strong> <span id="reserved-time"></span></p>
+        <button id="back-to-dashboard">Back to Dashboard</button>
+    </div>
+  </div>
+  
+  <script>
+    const seats = document.querySelectorAll('.seat-green');
+    const cafeNameElement = document.getElementById('cafe-name');
+    const reservedCafeElement = document.getElementById('reserved-cafe-name');
+    const confirmationPopup = document.getElementById('confirmation-popup');
+    const datePopup = document.getElementById('date-popup');
+    const timePopup = document.getElementById('time-popup');
+    const congratsPopup = document.getElementById('congratsPopup');
+    const namePopup = document.getElementById('name-popup');
+    const nameNextButton = document.getElementById('name-next-btn');
+    let customerName = "";
+
+    const yesButton = document.getElementById('yes-btn');
+    const noButton = document.getElementById('no-btn');
+    const dateNextButton = document.getElementById('date-next-btn');
+    const timeNextButton = document.getElementById('time-next-btn');
+    const backToDashboardButton = document.getElementById('back-to-dashboard');
+  
+    let selectedSeat = null;
+  
+    seats.forEach(seat => {
+        seat.addEventListener('click', function() {
+            selectedSeat = seat.getAttribute('data-seat');
+            confirmationPopup.style.display = 'flex';
+        });
+    });
+  
+    yesButton.addEventListener('click', function() {
+        confirmationPopup.style.display = 'none';
+        datePopup.style.display = 'flex';
+    });
+  
+    noButton.addEventListener('click', function() {
+        confirmationPopup.style.display = 'none';
+    });
+  
+    dateNextButton.addEventListener('click', function() {
+        const dateValue = document.getElementById('reservation-date').value;
+        if (dateValue) {
+            datePopup.style.display = 'none';
+            timePopup.style.display = 'flex';
+        } else {
+            alert("Please select a reservation date.");
+        }
+    });
+  
+    timeNextButton.addEventListener('click', function() {
+    const timeFrom = document.getElementById('time-from').value;
+    const timeTo = document.getElementById('time-to').value;
+    const dateValue = document.getElementById('reservation-date').value;
+
+    if (timeFrom && timeTo) {
+        timePopup.style.display = 'none';
+        namePopup.style.display = 'flex';
+    } else {
+        alert("Please select both 'From' and 'To' time.");
+    }
+});
+
+nameNextButton.addEventListener('click', function() {
+    const nameInput = document.getElementById('customer-name').value.trim();
+    const timeFrom = document.getElementById('time-from').value;
+    const timeTo = document.getElementById('time-to').value;
+    const dateValue = document.getElementById('reservation-date').value;
+
+    if (nameInput) {
+        customerName = nameInput;
+        namePopup.style.display = 'none';
+
+        const reservedTime = `${dateValue}, ${timeFrom} to ${timeTo}`;
+        const cafeName = cafeNameElement.textContent || cafeNameElement.innerText;
+
+        document.getElementById('reserved-seat').textContent = selectedSeat;
+        reservedCafeElement.textContent = cafeName;
+        document.getElementById('reserved-time').textContent = reservedTime;
+        document.getElementById('reserved-name').textContent = customerName;
+
+        congratsPopup.style.display = 'flex';
+    } else {
+        alert("Please enter your name.");
+    }
+});
+  
+    backToDashboardButton.addEventListener('click', function() {
+        window.location.href = 'dashboard_owner.html';
+    });
+  </script>
+  </body>
+  </html>
