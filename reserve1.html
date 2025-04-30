@@ -10,10 +10,10 @@
       <header class="navbar">
         <div class="logo"><a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>          
         <div class="nav-buttons">
-              <button class="nav-btn"><a href="search.html">search</a></button>
-              <button class="nav-btn"><a href="notif.html">notif</button></a>
-              <button class="nav-btn"><a href="profile.html">profile</button></a>
-          </div>
+          <button class="nav-btn"><a href="search.html"><img src="gambar/icons8-search-50.png" width="30" height="30"></a></button>
+          <button class="nav-btn"><a href="notif.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+          <button class="nav-btn"><a href="profile.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+      </div>
       </header>
 
     <div class="container mt-3">
@@ -26,7 +26,8 @@
                     <div class="section-label kasir-label">kasir</div>
                 </div>
                 <div class="col-10">
-                    <!-- Empat Baris Kursi, tiap baris: (2 merah kiri) + (2 merah tengah) + (2 hijau kanan) -->
+                    <!-- Empat Baris Kursi -->
+                    <!-- Baris 1 -->
                     <div class="row-of-seats row mb-3" id="baris1">
                       <div class="col-4 text-end">
                         <div class="seat seat-green" data-seat="01"></div>
@@ -115,104 +116,118 @@
         </div>
     </div>
 
-    <!-- Pop-up Konfirmasi -->
-    <div id="confirmation-popup" class="confirmation-popup">
-      <div class="popup-content">
-          <p>Sure to reserve?</p>
-          <button id="yes-btn">Yes</button>
-          <button id="no-btn">No</button>
-      </div>
-    </div>
+<!-- Pop-up Konfirmasi -->
+<div id="confirmation-popup" class="confirmation-popup" style="display: none;">
+  <div class="popup-content">
+      <p>Sure to reserve?</p>
+      <button id="yes-btn">Yes</button>
+      <button id="no-btn">No</button>
+  </div>
+</div>
 
-    <!-- Pop-up Time -->
-    <div id="time-popup" class="confirmation-popup">
-      <div class="popup-content">
-          <h3>Choose Time</h3>
-          <label for="time-from">From:</label>
-          <input type="time" id="time-from">
-          <label for="time-to">To:</label>
-          <input type="time" id="time-to">
-          <br>
-          <button id="next-btn">Next</button>
-      </div>
-    </div>
+<!-- Pop-up Tanggal -->
+<div id="date-popup" class="confirmation-popup" style="display: none;">
+  <div class="popup-content">
+      <h3>Choose Date</h3>
+      <label for="reservation-date">Date:</label>
+      <input type="date" id="reservation-date">
+      <br>
+      <button id="date-next-btn">Next</button>
+  </div>
+</div>
 
-    <!-- Pop-up Congrats -->
-    <div id="congratsPopup" class="confirmation-popup" style="display: none;">
-      <div class="popup-content">
-          <h3>Congrats!</h3>
-          <p>Your reservation has been confirmed!</p>
-          <p><strong>Seat:</strong> <span id="reserved-seat"></span></p>
-          <p><strong>Cafe:</strong> <span id="reserved-cafe-name"></span></p> <!-- Nama Cafe Ditampilkan di sini -->
-          <p><strong>Reservation Time:</strong> <span id="reserved-time"></span></p>
-          <button id="back-to-dashboard">Back to Dashboard</button>
-      </div>
-    </div>
+<!-- Pop-up Time -->
+<div id="time-popup" class="confirmation-popup" style="display: none;">
+  <div class="popup-content">
+      <h3>Choose Time</h3>
+      <label for="time-from">From:</label>
+      <input type="time" id="time-from">
+      <label for="time-to">To:</label>
+      <input type="time" id="time-to">
+      <br>
+      <button id="time-next-btn">Next</button>
+  </div>
+</div>
 
-    <script>
-      // Mendapatkan elemen-elemen kursi dan pop-up
-      const seats = document.querySelectorAll('.seat-green');
-      const cafeNameElement = document.getElementById('cafe-name'); // Elemen yang menyimpan nama cafe
-      const reservedCafeElement = document.getElementById('reserved-cafe-name'); // Elemen di pop-up yang menampilkan nama cafe
-      const confirmationPopup = document.getElementById('confirmation-popup');
-      const timePopup = document.getElementById('time-popup');
-      const congratsPopup = document.getElementById('congratsPopup'); // Sesuaikan ID dengan yang ada di HTML
-      const yesButton = document.getElementById('yes-btn');
-      const noButton = document.getElementById('no-btn');
-      const nextButton = document.getElementById('next-btn');
-      const backToDashboardButton = document.getElementById('back-to-dashboard');
-      let selectedSeat = null;
+<!-- Pop-up Congrats -->
+<div id="congratsPopup" class="confirmation-popup" style="display: none;">
+  <div class="popup-content">
+      <h3>Congrats!</h3>
+      <p>Your reservation has been confirmed!</p>
+      <p><strong>Seat:</strong> <span id="reserved-seat"></span></p>
+      <p><strong>Cafe:</strong> <span id="reserved-cafe-name"></span></p>
+      <p><strong>Reservation Time:</strong> <span id="reserved-time"></span></p>
+      <button id="back-to-dashboard">Back to Dashboard</button>
+  </div>
+</div>
 
-      // Fungsi untuk menampilkan pop-up konfirmasi
-      seats.forEach(seat => {
-          seat.addEventListener('click', function() {
-              selectedSeat = seat.getAttribute('data-seat'); // Menyimpan kursi yang dipilih
-              confirmationPopup.style.display = 'flex'; // Menampilkan pop-up konfirmasi
-          });
+<script>
+  const seats = document.querySelectorAll('.seat-green');
+  const cafeNameElement = document.getElementById('cafe-name');
+  const reservedCafeElement = document.getElementById('reserved-cafe-name');
+  const confirmationPopup = document.getElementById('confirmation-popup');
+  const datePopup = document.getElementById('date-popup');
+  const timePopup = document.getElementById('time-popup');
+  const congratsPopup = document.getElementById('congratsPopup');
+
+  const yesButton = document.getElementById('yes-btn');
+  const noButton = document.getElementById('no-btn');
+  const dateNextButton = document.getElementById('date-next-btn');
+  const timeNextButton = document.getElementById('time-next-btn');
+  const backToDashboardButton = document.getElementById('back-to-dashboard');
+
+  let selectedSeat = null;
+
+  seats.forEach(seat => {
+      seat.addEventListener('click', function() {
+          selectedSeat = seat.getAttribute('data-seat');
+          confirmationPopup.style.display = 'flex';
       });
+  });
 
-      // Menangani tombol "Yes" dari pop-up konfirmasi
-      yesButton.addEventListener('click', function() {
-          confirmationPopup.style.display = 'none'; // Menyembunyikan pop-up konfirmasi
-          timePopup.style.display = 'flex'; // Menampilkan pop-up waktu
-      });
+  yesButton.addEventListener('click', function() {
+      confirmationPopup.style.display = 'none';
+      datePopup.style.display = 'flex';
+  });
 
-      // Menangani tombol "No" dari pop-up konfirmasi
-      noButton.addEventListener('click', function() {
-          confirmationPopup.style.display = 'none'; // Menyembunyikan pop-up konfirmasi
-      });
+  noButton.addEventListener('click', function() {
+      confirmationPopup.style.display = 'none';
+  });
 
-      // Menangani tombol "Next" dari pop-up waktu
-      nextButton.addEventListener('click', function() {
-          const timeFrom = document.getElementById('time-from').value;
-          const timeTo = document.getElementById('time-to').value;
-          if (timeFrom && timeTo) {
-              timePopup.style.display = 'none'; // Menyembunyikan pop-up waktu
+  dateNextButton.addEventListener('click', function() {
+      const dateValue = document.getElementById('reservation-date').value;
+      if (dateValue) {
+          datePopup.style.display = 'none';
+          timePopup.style.display = 'flex';
+      } else {
+          alert("Please select a reservation date.");
+      }
+  });
 
-              // Menampilkan pop-up Congrats dengan data yang sesuai
-              const reservedSeat = selectedSeat;  // Ambil data kursi yang dipilih
-              // Ambil nama cafe dari elemen #cafe-name
-              const cafeName = cafeNameElement.textContent || cafeNameElement.innerText; // Nama cafe dari elemen HTML
-              
-              // Tampilkan nama cafe di pop-up
-              reservedCafeElement.textContent = cafeName; // Ini memastikan nama cafe ditampilkan di pop-up
-              const reservedTime = `${timeFrom} to ${timeTo}`;
+  timeNextButton.addEventListener('click', function() {
+      const timeFrom = document.getElementById('time-from').value;
+      const timeTo = document.getElementById('time-to').value;
+      const dateValue = document.getElementById('reservation-date').value;
 
-              // Menampilkan data ke dalam pop-up Congrats
-              document.getElementById('reserved-seat').textContent = reservedSeat;
-              document.getElementById('reserved-cafe-name').textContent = cafeName;
-              document.getElementById('reserved-time').textContent = reservedTime;
+      if (timeFrom && timeTo) {
+          timePopup.style.display = 'none';
 
-              congratsPopup.style.display = 'flex'; // Menampilkan pop-up Congrats
-          } else {
-              alert("Please select both 'From' and 'To' time.");
-          }
-      });
+          const reservedTime = `${dateValue}, ${timeFrom} to ${timeTo}`;
+          const cafeName = cafeNameElement.textContent || cafeNameElement.innerText;
 
-      // Menangani tombol "Back to Dashboard" dari pop-up Congrats
-      backToDashboardButton.addEventListener('click', function() {
-          window.location.href = 'dashboard_2.html'; // Mengarahkan pengguna kembali ke halaman Dashboard
-      });
-    </script>
-  </body>
+          document.getElementById('reserved-seat').textContent = selectedSeat;
+          reservedCafeElement.textContent = cafeName;
+          document.getElementById('reserved-time').textContent = reservedTime;
+
+          congratsPopup.style.display = 'flex';
+      } else {
+          alert("Please select both 'From' and 'To' time.");
+      }
+  });
+
+  backToDashboardButton.addEventListener('click', function() {
+      window.location.href = 'dashboard_2.html';
+  });
+</script>
+</body>
 </html>
