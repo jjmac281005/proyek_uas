@@ -1,0 +1,60 @@
+/* Kotak utama sign up */
+.signup-box {
+    background-color: #36596a; /* Warna biru tua */
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+/* Background gambar di Sign Up */
+.background {
+    background-color: #d2aa6d; /* Warna coklat muda */
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Logo kecil di kiri atas */
+.logo-small {
+    background-color: #8c6f4d; /* Warna coklat tua */
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.sign-up{
+    color: white;
+}
+
+.logosignup {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 15px;
+}
+
+.role-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    margin-top: -5px;
+}
+
+.role-button, .role-button1 {
+padding: 5px 16px;
+font-size: 14px;
+background-color: #8b6f4e;
+color: white;
+border: none;
+border-radius: 6px;
+text-decoration: none;
+font-weight:bold;
+transition: background-color 0.3s;
+}
+
+.role-button:hover, .role-button1:hover {
+    background-color: #6c563b;
+}
