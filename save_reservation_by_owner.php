@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("INSERT INTO dashboard_owner (username, cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
     $stmt->bind_param("ssssss", $username, $cafe, $seat, $timeFrom, $timeTo, $date_reservation);
 
-    $stmu = $conn->prepare("INSERT INTO reservations (cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+    $stmu = $conn->prepare("INSERT INTO reservation (cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
     $stmu->bind_param("sssss", $cafe, $seat, $timeFrom, $timeTo, $date_reservation);
 
     if ($stmt->execute()) {
