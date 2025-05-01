@@ -1,35 +1,42 @@
 <?php
+session_start();
 $conn = new mysqli("localhost", "root", "", "cafe_reservation");
+
+// Aktifkan error reporting untuk debugging (nonaktifkan di production)
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email    = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if ($email && $password) {
-        // Prepare query to check if the user exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Check if user is found
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            // Verify password
+
             if (password_verify($password, $user['password'])) {
-                // Password is correct, start session and set user data
-                session_start();
+                // Simpan session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                // Redirect to the appropriate dashboard based on user role
-                if ($user['role'] === 'customer') {
-                    header("Location: dashboard_customer.html");
-                } else if ($user['role'] === 'owner') {
-                    header("Location: dashboard_owner.html");
+                // Arahkan ke dashboard sesuai role
+                switch ($user['role']) {
+                    case 'customer':
+                        header("Location: dashboard_customer.html");
+                        break;
+                    case 'owner':
+                        header("Location: dashboard_owner.html");
+                        break;
+                    default:
+                        echo "<script>alert('Unknown role.'); window.location.href='login.html';</script>";
+                        break;
                 }
-                exit(); // Stop further script execution after redirect
+                exit();
             } else {
                 echo "<script>alert('Incorrect password.'); window.location.href='login.html';</script>";
                 exit();
