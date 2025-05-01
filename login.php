@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+$conn = new mysqli("localhost", "root", "", "cafe_reservation");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email    = $_POST['email'] ?? '';
@@ -29,16 +29,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 } else if ($user['role'] === 'owner') {
                     header("Location: dashboard_owner.html");
                 }
-                exit();
+                exit(); // Stop further script execution after redirect
             } else {
-                echo "<script>alert('Incorrect password.');</script>";
+                echo "<script>alert('Incorrect password.'); window.location.href='login.html';</script>";
+                exit();
             }
         } else {
-            echo "<script>alert('No user found with that email.');</script>";
+            echo "<script>alert('No user found with that email.'); window.location.href='login.html';</script>";
+            exit();
         }
 
         $stmt->close();
-        $conn->close();
     }
 }
+
+$conn->close();
 ?>
