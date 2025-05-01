@@ -30,80 +30,80 @@
                     <!-- Baris 1 -->
                     <div class="row-of-seats row mb-3" id="baris1">
                       <div class="col-4 text-end">
-                        <div class="seat seat-green" data-seat="01"></div>
-                        <div class="seat seat-green" data-seat="02"></div>
+                        <div class="seat" data-seat="01"></div>
+                        <div class="seat" data-seat="02"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="03"></div>
-                        <div class="seat seat-red" data-seat="04"></div>
+                        <div class="seat" data-seat="03"></div>
+                        <div class="seat" data-seat="04"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="05"></div>
-                        <div class="seat seat-red" data-seat="06"></div>
+                        <div class="seat" data-seat="05"></div>
+                        <div class="seat" data-seat="06"></div>
                       </div>
                       <div class="col-4 text-start">
-                        <div class="seat seat-green" data-seat="07"></div>
-                        <div class="seat seat-green" data-seat="08"></div>
+                        <div class="seat" data-seat="07"></div>
+                        <div class="seat" data-seat="08"></div>
                       </div>
                     </div>
           
                     <!-- Baris 2 -->
                     <div class="row-of-seats row mb-3" id="baris2">
                       <div class="col-4 text-end">
-                        <div class="seat seat-red" data-seat="09"></div>
-                        <div class="seat seat-red" data-seat="10"></div>
+                        <div class="seat" data-seat="09"></div>
+                        <div class="seat" data-seat="10"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="11"></div>
-                        <div class="seat seat-red" data-seat="12"></div>
+                        <div class="seat" data-seat="11"></div>
+                        <div class="seat" data-seat="12"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="13"></div>
-                        <div class="seat seat-red" data-seat="14"></div>
+                        <div class="seat" data-seat="13"></div>
+                        <div class="seat" data-seat="14"></div>
                       </div>
                       <div class="col-4 text-start">
-                        <div class="seat seat-green" data-seat="15"></div>
-                        <div class="seat seat-green" data-seat="16"></div>
+                        <div class="seat" data-seat="15"></div>
+                        <div class="seat" data-seat="16"></div>
                       </div>
                     </div>
           
                     <!-- Baris 3 -->
                     <div class="row-of-seats row mb-3" id="baris3">
                       <div class="col-4 text-end">
-                        <div class="seat seat-red" data-seat="17"></div>
-                        <div class="seat seat-red" data-seat="18"></div>
+                        <div class="seat" data-seat="17"></div>
+                        <div class="seat" data-seat="18"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="19"></div>
-                        <div class="seat seat-red" data-seat="20"></div>
+                        <div class="seat" data-seat="19"></div>
+                        <div class="seat" data-seat="20"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-green" data-seat="21"></div>
-                        <div class="seat seat-green" data-seat="22"></div>
+                        <div class="seat" data-seat="21"></div>
+                        <div class="seat" data-seat="22"></div>
                       </div>
                       <div class="col-4 text-start">
-                        <div class="seat seat-red" data-seat="23"></div>
-                        <div class="seat seat-red" data-seat="24"></div>
+                        <div class="seat" data-seat="23"></div>
+                        <div class="seat" data-seat="24"></div>
                       </div>
                     </div>
           
                     <!-- Baris 4 -->
                     <div class="row-of-seats row mb-3" id="baris4">
                       <div class="col-4 text-end">
-                        <div class="seat seat-red" data-seat="25"></div>
-                        <div class="seat seat-red" data-seat="26"></div>
+                        <div class="seat" data-seat="25"></div>
+                        <div class="seat" data-seat="26"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-green" data-seat="27"></div>
-                        <div class="seat seat-green" data-seat="28"></div>
+                        <div class="seat" data-seat="27"></div>
+                        <div class="seat" data-seat="28"></div>
                       </div>
                       <div class="col-4 text-center">
-                        <div class="seat seat-red" data-seat="29"></div>
-                        <div class="seat seat-red" data-seat="30"></div>
+                        <div class="seat" data-seat="29"></div>
+                        <div class="seat" data-seat="30"></div>
                       </div>
                       <div class="col-4 text-start">
-                        <div class="seat seat-green" data-seat="31"></div>
-                        <div class="seat seat-green" data-seat="32"></div>
+                        <div class="seat" data-seat="31"></div>
+                        <div class="seat" data-seat="32"></div>
                       </div>
                     </div>
                 <div class="col-1 d-flex align-items-center flex-column">
@@ -162,7 +162,7 @@
 </div>
 
 <script>
-  const seats = document.querySelectorAll('.seat-green');
+  const seats = document.querySelectorAll('.seat');
   const cafeNameElement = document.getElementById('cafe-name');
   const reservedCafeElement = document.getElementById('reserved-cafe-name');
   const confirmationPopup = document.getElementById('confirmation-popup');
@@ -178,12 +178,29 @@
 
   let selectedSeat = null;
 
-  seats.forEach(seat => {
-      seat.addEventListener('click', function() {
-          selectedSeat = seat.getAttribute('data-seat');
-          confirmationPopup.style.display = 'flex';
+  fetch('get_reserved_seats.php')
+      .then(response => response.json())
+      .then(reservedSeats => {
+        seats.forEach(seat => {
+          const seatNum = seat.getAttribute('data-seat');
+          const isReserved = reservedSeats.some(res => res.seat_number === seatNum);
+
+          if (isReserved) {
+            seat.classList.remove('seat-green');
+            seat.classList.add('seat-red');
+            seat.style.pointerEvents = 'none';
+          } else {
+            seat.classList.remove('seat-red');
+            seat.classList.add('seat-green');
+            seat.style.pointerEvents = 'auto';
+
+            seat.addEventListener('click', () => {
+              selectedSeat = seatNum;
+              confirmationPopup.style.display = 'flex';
+            });
+          }
+        });
       });
-  });
 
   yesButton.addEventListener('click', function() {
       confirmationPopup.style.display = 'none';
@@ -218,6 +235,18 @@
           document.getElementById('reserved-seat').textContent = selectedSeat;
           reservedCafeElement.textContent = cafeName;
           document.getElementById('reserved-time').textContent = reservedTime;
+
+          fetch('save_reservation.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `seat=${selectedSeat}&cafe=${encodeURIComponent(cafeName)}&time_from=${timeFrom}&time_to=${timeTo}&date_reservation=${dateValue}`
+          })
+          .then(response => response.text())
+          .then(data => {
+            console.log(data);
+          })
 
           congratsPopup.style.display = 'flex';
       } else {
