@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root";  // Ganti sesuai database kamu
-$pass = "";      // Ganti jika ada password
+$user = "root";  
+$pass = "";      
 $dbname = "cafe_reservation";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
