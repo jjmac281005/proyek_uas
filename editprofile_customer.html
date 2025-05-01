@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Main</title>
+    <link rel="stylesheet" href="editprofile.css">
+</head>
+<body>
+        <header class="navbar">
+            <div class="logo"><a href="dashboard_owner.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+            <div class="nav-buttons">
+                <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+                <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+            </div>
+        </header>
+
+        <div class="edit-container">
+            <div class="edit-card">
+              <div class="form-section">
+                <h2>Edit Profile</h2>
+                <form id="edit-profile-form" action="update_profile.php" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="username" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="text" id="password" name="password">
+                    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" maxlength="13" required>                    
+
+                  <div class="form-buttons">
+                    <button type="submit" onclick="window.location.href='update_profile.php'">Save</button>
+                    <button type="button" onclick="window.location.href='profile.php'">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </body>
+        </html>
