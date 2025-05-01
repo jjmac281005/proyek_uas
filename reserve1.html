@@ -179,7 +179,12 @@
   let selectedSeat = null;
 
   fetch('get_reserved_seats.php')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(reservedSeats => {
         seats.forEach(seat => {
           const seatNum = seat.getAttribute('data-seat');
@@ -200,6 +205,9 @@
             });
           }
         });
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
       });
 
   yesButton.addEventListener('click', function() {

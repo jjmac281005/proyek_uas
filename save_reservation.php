@@ -1,32 +1,40 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 
-// Memeriksa apakah data dikirim melalui POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ambil data dari POST request
-    $seat = isset($_POST['seat']) ? $_POST['seat'] : null;
-    $cafe = isset($_POST['cafe']) ? $_POST['cafe'] : null;
-    $timeFrom = isset($_POST['time_from']) ? $_POST['time_from'] : null;
-    $timeTo = isset($_POST['time_to']) ? $_POST['time_to'] : null;
-    $date_reservation = isset($_POST['date_reservation']) ? $_POST['date_reservation'] : null;
+// Cek apakah user sudah login
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(["status" => "fail", "message" => "Unauthorized"]);
+    exit;
+}
 
-    // Validasi data
-    if (!$seat || !$cafe || !$timeFrom || !$timeTo) {
+$user_id = $_SESSION['user_id'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $seat = $_POST['seat'] ?? null;
+    $cafe = $_POST['cafe'] ?? null;
+    $timeFrom = $_POST['time_from'] ?? null;
+    $timeTo = $_POST['time_to'] ?? null;
+    $date_reservation = $_POST['date_reservation'] ?? null;
+    $status = 'pending'; 
+
+
+    // Validasi
+    if (!$seat || !$cafe || !$timeFrom || !$timeTo || !$date_reservation) {
         echo json_encode(["status" => "fail", "message" => "Missing data"]);
         exit;
     }
 
-    // Koneksi ke database
-    $conn = new mysqli("localhost", "root", "", "cafe_reservation"); // ganti dengan nama database kamu
+    $conn = new mysqli("localhost", "root", "", "cafe_reservation");
 
     if ($conn->connect_error) {
         echo json_encode(["status" => "fail", "message" => "DB connection error"]);
         exit;
     }
 
-    // Simpan ke tabel
-    $stmt = $conn->prepare("INSERT INTO reservations (cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("sssss", $cafe, $seat, $timeFrom, $timeTo, $date_reservation);
+    $stmt = $conn->prepare("INSERT INTO reservation (user_id, cafe_name, seat_number, time_from, time_to, date_reservation, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("issssss", $user_id, $cafe, $seat, $timeFrom, $timeTo, $date_reservation, $status);
+
 
     if ($stmt->execute()) {
         echo json_encode(["status" => "success"]);

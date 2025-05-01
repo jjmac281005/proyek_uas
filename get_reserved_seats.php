@@ -1,7 +1,7 @@
 <?php
 $koneksi = new mysqli("localhost", "root", "", "cafe_reservation");
 
-$result = $koneksi->query("SELECT seat_number FROM reservations");
+$result = $koneksi->query("SELECT seat_number FROM reservation");
 $seats = [];
 
 while ($row = $result->fetch_assoc()) {
