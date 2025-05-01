@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = $check->get_result();
 
         if ($result->num_rows > 0) {
-            echo "<script>alert('Email sudah digunakan.'); window.location.href='sign_up_customer.html';</script>";
+            echo "Email sudah digunakan.";
         } else {
             // Insert pengguna baru
             $insert = $conn->prepare("INSERT INTO users (username, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['username'] = $username;
                 $_SESSION['role'] = $role;
 
-                header("Location: dashboard_customer.html");
+                echo "success";
                 exit();
             } else {
-                echo "<script>alert('Terjadi kesalahan saat menyimpan data.'); window.location.href='sign_up_customer.html';</script>";
+                echo "Terjadi kesalahan saat menyimpan data.";
             }
 
             $insert->close();
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $check->close();
     } else {
-        echo "<script>alert('Semua field harus diisi.'); window.location.href='sign_up_customer.html';</script>";
+        echo "Semua field harus diisi.";
     }
 
     $conn->close();

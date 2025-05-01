@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $phone    = trim($_POST['phone'] ?? '');
 
     if ($username && $email && $password && $phone) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = $password
         $role = 'customer';
 
         // Cek apakah email sudah terdaftar

@@ -17,31 +17,31 @@
 
         <div class="edit-container">
             <div class="edit-card">
-              <div class="logo-section">
-                <img id="logo-preview" img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Cafe Logo">
-                <input type="file" id="logo-upload" accept="image/*">
-              </div>
               <div class="form-section">
                 <h2>Edit Cafe Profile</h2>
-                <form id="edit-profile-form">
+                <form id="edit-profile-form" action="update_owner_profile.php" method="POST" enctype="multipart/form-data">
+                  <div class="logo-section">
+                    <img id="logo-preview" src="">
+                    <input type="file" id="logo-upload" accept="image/*" name="logo">
+                  </div>
                   <label for="name">Cafe Name:</label>
-                  <input type="text" id="name" name="name" value="ALLIGATOR">
+                  <input type="text" id="name" name="name">
         
                   <label for="address">Address:</label>
-                  <textarea id="address" name="address" rows="3">Jl. Kenanga No.17, Hamdan, Kec. Medan Maimun, Kota Medan, Sumatera Utara 20132</textarea>
+                  <textarea id="address" name="address" rows="3"></textarea>
         
                   <label for="phone">Phone:</label>
-                  <input type="tel" id="phone" name="phone" value="+62 813 6222 3557">
+                  <input type="tel" id="phone" name="phone">
         
                   <label for="weekday-hours">Weekday Hours:</label>
-                  <input type="text" id="weekday-hours" name="weekday-hours" value="9 AM - 10 PM">
+                  <input type="text" id="weekday-hours" name="weekdays_hours">
         
                   <label for="weekend-hours">Weekend Hours:</label>
-                  <input type="text" id="weekend-hours" name="weekend-hours" value="9 AM - 11 PM">
+                  <input type="text" id="weekend-hours" name="weekend_hours">
         
                   <div class="form-buttons">
-                    <button type="button" onclick="window.location.href='profile_owner.html'">Save</button>
-                    <button type="button" onclick="window.location.href='profile_owner.html'">Cancel</button>
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="window.location.href='profile_owner.php'">Cancel</button>
                   </div>
                 </form>
               </div>

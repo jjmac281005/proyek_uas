@@ -26,11 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Location: dashboard_main.html");
                 exit();
             } else {
-                echo "<script>alert('Incorrect password.'); window.location.href='login.html';</script>";
+                echo "Incorrect password.";
                 exit();
             }
         } else {
-            echo "<script>alert('No customer found with that email.'); window.location.href='login.html';</script>";
+            echo "No customer found with that email.";
             exit();
         }
 

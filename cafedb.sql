@@ -21,6 +21,32 @@ CREATE TABLE cafe_photos (
     FOREIGN KEY (cafe_id) REFERENCES cafes(id) ON DELETE CASCADE
 );
 
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    cafe_id INT,
+    FOREIGN KEY (cafe_id) REFERENCES cafes(id),
+    weekdays_hours VARCHAR(50),
+    weekend_hours VARCHAR(50),
+    role ENUM('customer', 'owner', 'admin') NOT NULL
+);
+
+INSERT INTO admin (username, phone, email, password, cafe_id, role, weekdays_hours, weekend_hours) VALUES
+('Koora Cafe', '123456',
+ 'koora@gmail.com', '1234', 1, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Alligator Cafe', '123456',
+ 'alligator@gmail.com', '1234', 2, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Omotesando Cafe', '123456',
+ 'omotesando@gmail.com', '1234', 3, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Potte Cafe', '123456',
+ 'potte@gmail.com', '1234', 4, 'owner', '9 AM - 10 PM', '9 AM - 11 PM')
+
 -- Isi data kafe (4 kafe contoh)
 INSERT INTO cafes (id, name, logo, address, rating, cuisine) VALUES
 (1, 'Koora Cafe', 'gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png',
