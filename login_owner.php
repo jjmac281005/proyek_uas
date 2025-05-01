@@ -1,13 +1,14 @@
 <?php
-include 'db.php';
 session_start();
+$conn = new mysqli("localhost", "root", "", "cafe_reservation");
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email    = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
     if ($email && $password) {
-        // Cari user berdasarkan email dan role owner
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND role = 'owner'");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -15,26 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-
             if (password_verify($password, $user['password'])) {
-                // Simpan data user dalam session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
-
                 header("Location: dashboard_owner.html");
                 exit();
             } else {
-                echo "<script>alert('Password salah.'); window.history.back();</script>";
+                echo "<script>alert('Incorrect password.'); window.location.href='login_owner.html';</script>";
             }
         } else {
-            echo "<script>alert('Akun owner tidak ditemukan.'); window.history.back();</script>";
+            echo "<script>alert('No owner account found with that email.'); window.location.href='login_owner.html';</script>";
         }
 
         $stmt->close();
-        $conn->close();
-    } else {
-        echo "<script>alert('Email dan password wajib diisi.'); window.history.back();</script>";
     }
 }
+
+$conn->close();
 ?>
