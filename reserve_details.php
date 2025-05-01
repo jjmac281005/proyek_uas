@@ -120,7 +120,7 @@ $conn->close();
       <div class="info-box"><?= htmlspecialchars($reservation['username']) ?></div>
       <div class="info-box"><?= htmlspecialchars($reservation_time_display) ?></div>
       <div class="info-box">Seat <?= htmlspecialchars($reservation['seat_number']) ?></div>
-      <div class="info-box">Status: <?= $status ?></div>
+      <div class="info-box" id="reservationStatus"></div>
     </div>
   </div>
 
@@ -134,7 +134,7 @@ $conn->close();
 
   <!-- Cancel popup -->
   <form method="POST" action="cancel_reservation.php">
-    <input type="hidden" name="reservation_id" value="<?= $reservation_id ?>">
+    <input type="hidden" name="id" value="<?= $reservation_id ?>">
     <div id="cancelPopup" class="popup-overlay">
       <div class="popup-box">
         <p>Are you sure you want to cancel this reservation?</p>
@@ -156,6 +156,18 @@ $conn->close();
     function closeCancelPopup() {
       document.getElementById('cancelPopup').style.display = 'none';
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const reservationEnd = new Date("<?= $reservation_end->format('Y-m-d H:i:s') ?>");
+    const currentTime = new Date();
+    const statusElement = document.getElementById('reservationStatus');
+    
+    if (reservationEnd < currentTime) {
+        statusElement.innerHTML = 'Status: Expired';
+    } else {
+        statusElement.innerHTML = 'Status: Ongoing';
+    }
+    });
   </script>
 </body>
 </html>

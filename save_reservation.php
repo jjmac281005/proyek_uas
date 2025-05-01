@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $timeFrom = $_POST['time_from'] ?? null;
     $timeTo = $_POST['time_to'] ?? null;
     $date_reservation = $_POST['date_reservation'] ?? null;
-    $status = 'pending'; 
+    $status = 'Confirmed'; 
 
 
     // Validasi
