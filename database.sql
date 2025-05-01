@@ -8,3 +8,24 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE dashboard_owner (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    cafe_name VARCHAR(255) NOT NULL,
+    seat_number VARCHAR(10) NOT NULL,
+    time_from TIME NOT NULL,
+    time_to TIME NOT NULL,
+    date_reservation DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE reservations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cafe_name VARCHAR(255) NOT NULL,
+    seat_number VARCHAR(10) NOT NULL,
+    time_from TIME NOT NULL,
+    time_to TIME NOT NULL,    
+    date_reservation DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
