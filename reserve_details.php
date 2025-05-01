@@ -9,36 +9,32 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Ambil reservasi terbaru milik user
+date_default_timezone_set('Asia/Jakarta');
+$current_time = new DateTime();
+
+// Ambil semua reservasi user yang belum di-cancel
 $stmt = $conn->prepare("
-    SELECT reservation.id, users.username, seat_number, time_from, time_to, date_reservation
+    SELECT reservation.id, cafe_name, users.username, seat_number, time_from, time_to, date_reservation
     FROM reservation
-    JOIN users
-    ON users.id = reservation.user_id
-    WHERE user_id = ?
-    ORDER BY created_at DESC
-    LIMIT 1
+    JOIN users ON users.id = reservation.user_id
+    WHERE reservation.user_id = ? AND status != 'Canceled'
+    ORDER BY date_reservation DESC, time_from DESC
 ");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows === 0) {
-    echo "<script>alert('No reservations found.'); window.location.href = 'dashboard_main.html';</script>";
-    exit();
+$reservations = [];
+
+while ($row = $result->fetch_assoc()) {
+    $reservation_end = new DateTime($row['date_reservation'] . ' ' . $row['time_to']);
+    $row['status'] = ($reservation_end > $current_time) ? 'Ongoing' : 'Expired';
+    $row['reservation_time_display'] =
+        date('j M Y', strtotime($row['date_reservation'])) . ', ' .
+        substr($row['time_from'], 0, 5) . ' - ' .
+        substr($row['time_to'], 0, 5);
+    $reservations[] = $row;
 }
-
-$reservation = $result->fetch_assoc();
-$reservation_id = $reservation['id'];
-
-// Gabungkan tanggal dan jam selesai reservasi untuk validasi status
-$reservation_end = new DateTime($reservation['date_reservation'] . ' ' . $reservation['time_to']);
-$current_time = new DateTime();
-$status = ($reservation_end < $current_time) ? 'Expired' : 'Ongoing';
-
-// Format tampilan waktu reservasi
-$reservation_time_display = date('j M Y', strtotime($reservation['date_reservation'])) . ', ' .
-    substr($reservation['time_from'], 0, 5) . ' - ' . substr($reservation['time_to'], 0, 5);
 
 $stmt->close();
 $conn->close();
@@ -47,20 +43,20 @@ $conn->close();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Reservation Details</title>
   <link rel="stylesheet" href="reserve_details.css">
   <style>
-    .logo-kafe {
-      text-align: center;
+    .reservation-card {
+      background-color: #c49a6c;
+      padding: 15px;
+      max-width: 1286px;
       margin-bottom: 10px;
+      margin-left: 100px;
+      margin-top: 10px;
+      border-radius: 10px;
     }
-    .logo-kafe img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 5%;
-    }
+    .status-ongoing { color: green; font-weight: bold; }
+    .status-expired { color: red; font-weight: bold; }
     .popup-overlay {
       display: none;
       position: fixed;
@@ -96,78 +92,70 @@ $conn->close();
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="logo">
-      <a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="text Logo"></a>
-    </div>
-    <div class="nav-buttons">
-      <button class="nav-btn"><a href="search.html"><img src="gambar/icons8-search-50.png" width="30" height="30"></a></button>
-      <button class="nav-btn"><a href="notif.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
-      <button class="nav-btn"><a href="profile.php"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
-    </div>
-  </header>
+<header class="navbar">
+  <div class="logo"><a href="dashboard_owner.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+  <div class="nav-buttons">
+    <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+    <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+  </div>
+</header>
 
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="logo-kafe">
-          <img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Cafe Logo">
+<div class="container mt-4">
+  <?php if (empty($reservations)): ?>
+    <p>No reservations found.</p>
+  <?php else: ?>
+    <?php foreach ($reservations as $index => $res): ?>
+      <div class="reservation-card">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="info-box"><?= htmlspecialchars($res['username']) ?></div>            
+            <div class="info-box"><?= htmlspecialchars($res['cafe_name']) ?></div>
+            <div class="info-box"><?= htmlspecialchars($res['reservation_time_display']) ?></div>
+            <div class="info-box">Seat <?= htmlspecialchars($res['seat_number']) ?></div>
+            <div class="info-box" id="reservationStatus">
+              <p>Status:
+                <span class="status-<?= strtolower($res['status']) ?>">
+                  <?= $res['status'] ?>
+                </span>
+              </p>
+
+              <?php if ($res['status'] === 'Ongoing'): ?>
+                <div class="cancel-container">
+                  <button class="btn btn-cancel" onclick="showCancelPopup(<?= $index ?>)">Cancel</button>
+                </div>
+
+                <form method="POST" action="cancel_reservation.php">
+                  <input type="hidden" name="id" value="<?= $res['id'] ?>">
+                  <div id="cancelPopup<?= $index ?>" class="popup-overlay">
+                    <div class="popup-box">
+                      <p>Are you sure you want to cancel this reservation?</p>
+                      <button type="submit">Yes</button>
+                      <button type="button" onclick="closeCancelPopup(<?= $index ?>)">No</button>
+                    </div>
+                  </div>
+                </form>
+              <?php else: ?>
+                <p><em>Cannot cancel expired reservation</em></p>
+              <?php endif; ?>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
+</div>
 
-    <div class="col-md-8 justify-contend-end">
-      <div class="info-box"><?= htmlspecialchars($reservation['username']) ?></div>
-      <div class="info-box"><?= htmlspecialchars($reservation_time_display) ?></div>
-      <div class="info-box">Seat <?= htmlspecialchars($reservation['seat_number']) ?></div>
-      <div class="info-box" id="reservationStatus"></div>
-    </div>
-  </div>
+<div class="back-container">
+  <button class="btn btn-back" onclick="window.location.href='dashboard_main.html'">Back to Dashboard</button>
+</div>
 
-  <div class="cancel-container">
-    <button class="btn btn-cancel" onclick="showCancelPopup()">Cancel</button>
-  </div>
-
-  <div class="back-container">
-    <button class="btn btn-back" onclick="goToDetails()">Back to Dashboard</button>
-  </div>
-
-  <!-- Cancel popup -->
-  <form method="POST" action="cancel_reservation.php">
-    <input type="hidden" name="id" value="<?= $reservation_id ?>">
-    <div id="cancelPopup" class="popup-overlay">
-      <div class="popup-box">
-        <p>Are you sure you want to cancel this reservation?</p>
-        <button type="submit">Yes</button>
-        <button type="button" onclick="closeCancelPopup()">No</button>
-      </div>
-    </div>
-  </form>
-
-  <script>
-    function goToDetails() {
-      window.location.href = 'dashboard_main.html';
-    }
-
-    function showCancelPopup() {
-      document.getElementById('cancelPopup').style.display = 'flex';
-    }
-
-    function closeCancelPopup() {
-      document.getElementById('cancelPopup').style.display = 'none';
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-    const reservationEnd = new Date("<?= $reservation_end->format('Y-m-d H:i:s') ?>");
-    const currentTime = new Date();
-    const statusElement = document.getElementById('reservationStatus');
-    
-    if (reservationEnd < currentTime) {
-        statusElement.innerHTML = 'Status: Expired';
-    } else {
-        statusElement.innerHTML = 'Status: Ongoing';
-    }
-    });
-  </script>
+<script>
+  function showCancelPopup(index) {
+    document.getElementById('cancelPopup' + index).style.display = 'flex';
+  }
+  function closeCancelPopup(index) {
+    document.getElementById('cancelPopup' + index).style.display = 'none';
+  }
+</script>
 </body>
 </html>
