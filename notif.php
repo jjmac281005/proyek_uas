@@ -12,8 +12,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
 $user_id = $_SESSION['user_id'];
 
 // Ambil data notifikasi dari database berdasarkan user_id
-$stmt = $conn->prepare("SELECT c.name AS cafe_name, r.date, r.time, r.status 
-                        FROM reservations r
+$stmt = $conn->prepare("SELECT c.name AS cafe_name, r.date_reservation, r.time_from, r.time_to, r.status 
+                        FROM reservation r
                         JOIN cafes c ON r.cafe_id = c.id
                         WHERE r.customer_id = ?
                         ORDER BY r.date DESC, r.time DESC");
