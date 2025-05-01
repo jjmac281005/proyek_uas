@@ -21,12 +21,15 @@ CREATE TABLE dashboard_owner (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE reservations (
+CREATE TABLE reservation (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
     cafe_name VARCHAR(255) NOT NULL,
     seat_number VARCHAR(10) NOT NULL,
     time_from TIME NOT NULL,
     time_to TIME NOT NULL,    
     date_reservation DATE NOT NULL,
+    status VARCHAR(20),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
