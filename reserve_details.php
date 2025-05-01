@@ -55,6 +55,17 @@ $conn->close();
       margin-top: 10px;
       border-radius: 10px;
     }
+    .logo-kafe {
+      text-align: center;
+      float: right;
+      margin-bottom: 10px;
+    }
+    .logo-kafe img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5%;
+    }
     .status-ongoing { color: green; font-weight: bold; }
     .status-expired { color: red; font-weight: bold; }
     .popup-overlay {
@@ -107,6 +118,11 @@ $conn->close();
     <?php foreach ($reservations as $index => $res): ?>
       <div class="reservation-card">
         <div class="row">
+          <div class="col-md-3">
+          <div class="logo-kafe">
+            <img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Cafe Logo">
+          </div>
+        </div>
           <div class="col-md-9">
             <div class="info-box"><?= htmlspecialchars($res['username']) ?></div>            
             <div class="info-box"><?= htmlspecialchars($res['cafe_name']) ?></div>
