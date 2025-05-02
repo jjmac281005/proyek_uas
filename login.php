@@ -27,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // Arahkan ke dashboard sesuai role
                 switch ($user['role']) {
                     case 'customer':
-                        header("Location: dashboard_customer.html");
+                        header("Location: dashboard_main.php");
                         break;
                     case 'owner':
-                        header("Location: dashboard_owner.html");
+                        header("Location: dashboard_owner.php");
                         break;
                     default:
                         echo "<script>alert('Unknown role.'); window.location.href='login.html';</script>";
