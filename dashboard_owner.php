@@ -323,7 +323,7 @@ nameNextButton.addEventListener('click', function() {
 });
   
     backToDashboardButton.addEventListener('click', function() {
-        window.location.href = 'dashboard_owner.html';
+        window.location.href = 'dashboard_owner.php';
     });
   </script>
   </body>
