@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
-                header("Location: dashboard_owner.html");
+                header("Location: dashboard_owner.php");
                 exit();
             } else {
                 echo "Incorrect password.";

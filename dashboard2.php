@@ -57,12 +57,12 @@ $cafes = $koneksi->query("SELECT * FROM cafes");
 <body>
 <header class="navbar">
     <div class="logo">
-        <a href="dashboard2.php"><img src="gambar/logo_text.png" alt="text Logo"></a>
+        <a href="reserve_details.php"><img src="gambar/logo_text.png" alt="text Logo"></a>
     </div>
     <div class="nav-buttons">
         <button class="nav-btn"><a href="search.html"><img src="gambar/icons8-search-50.png" width="30"></a></button>
         <button class="nav-btn"><a href="notif.html"><img src="gambar/icons8-notifications-64.png" width="30"></a></button>
-        <button class="nav-btn"><a href="profile.html"><img src="gambar/icons8-male-user-48.png" width="30"></a></button>
+        <button class="nav-btn"><a href="profile.php"><img src="gambar/icons8-male-user-48.png" width="30"></a></button>
     </div>
 </header>
 
