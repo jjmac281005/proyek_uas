@@ -34,19 +34,6 @@ CREATE TABLE admin (
     role ENUM('customer', 'owner', 'admin') NOT NULL
 );
 
-INSERT INTO admin (username, phone, email, password, cafe_id, role, weekdays_hours, weekend_hours) VALUES
-('Koora Cafe', '123456',
- 'koora@gmail.com', '1234', 1, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
-
-('Alligator Cafe', '123456',
- 'alligator@gmail.com', '1234', 2, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
-
-('Omotesando Cafe', '123456',
- 'omotesando@gmail.com', '1234', 3, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
-
-('Potte Cafe', '123456',
- 'potte@gmail.com', '1234', 4, 'owner', '9 AM - 10 PM', '9 AM - 11 PM');
-
 -- Isi data kafe (4 kafe contoh)
 INSERT INTO cafes (id, name, logo, address, rating, cuisine) VALUES
 (1, 'Koora Cafe', 'gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png',
@@ -75,3 +62,17 @@ INSERT INTO cafe_photos (cafe_id, photo_url) VALUES
 
 (4, 'gambar/POTTE/interior1.jpeg'),
 (4, 'gambar/POTTE/interior2.jpeg');
+
+
+INSERT INTO admin (username, phone, email, password, cafe_id, role, weekdays_hours, weekend_hours) VALUES
+('Koora Cafe', '123456',
+ 'koora@gmail.com', '1234', 1, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Alligator Cafe', '123456',
+ 'alligator@gmail.com', '1234', 2, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Omotesando Cafe', '123456',
+ 'omotesando@gmail.com', '1234', 3, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
+
+('Potte Cafe', '123456',
+ 'potte@gmail.com', '1234', 4, 'owner', '9 AM - 10 PM', '9 AM - 11 PM');
