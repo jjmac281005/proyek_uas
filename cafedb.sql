@@ -45,7 +45,7 @@ INSERT INTO admin (username, phone, email, password, cafe_id, role, weekdays_hou
  'omotesando@gmail.com', '1234', 3, 'owner', '9 AM - 10 PM', '9 AM - 11 PM'),
 
 ('Potte Cafe', '123456',
- 'potte@gmail.com', '1234', 4, 'owner', '9 AM - 10 PM', '9 AM - 11 PM')
+ 'potte@gmail.com', '1234', 4, 'owner', '9 AM - 10 PM', '9 AM - 11 PM');
 
 -- Isi data kafe (4 kafe contoh)
 INSERT INTO cafes (id, name, logo, address, rating, cuisine) VALUES
