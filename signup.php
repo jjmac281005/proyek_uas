@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = $check->get_result();
 
         if ($result->num_rows > 0) {
-            echo "<script>alert('Email sudah digunakan.'); window.location.href='sign_up_customer.html';</script>";
+            echo "<script>alert('Email sudah digunakan.'); window.location.href='signup_customer.html';</script>";
         } else {
             $stmt = $conn->prepare("INSERT INTO users (username, email, password, phone, role) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("sssss", $username, $email, $hashed_password, $phone, $role);
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $check->close();
     } else {
-        echo "<script>alert('Semua field harus diisi.'); window.location.href='sign_up_customer.html';</script>";
+        echo "<script>alert('Semua field harus diisi.'); window.location.href='signup_customer.html';</script>";
     }
 
     $conn->close();
