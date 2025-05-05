@@ -1,13 +1,31 @@
 <?php
-// Koneksi ke database
-$koneksi = new mysqli("localhost", "root", "", "cafedb");
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
+session_start();
+include 'database.php';
+
+// Cek koneksi
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
 
-// Ambil data dari tabel cafes
-$query = "SELECT name, logo FROM cafes";
-$result = $koneksi->query($query);
+$total = 0;
+
+$today = date('Y-m-d'); // tanggal hari ini
+
+$sql = "SELECT COUNT(*) AS total_reservasi 
+        FROM reservation 
+        WHERE status IN ('confirmed', 'pending') 
+        AND date_reservation >= '$today'";
+$result = $conn->query($sql);
+
+if ($result && $row = $result->fetch_assoc()) {
+    $total = $row['total_reservasi'];
+} else {
+    // Jika query gagal, tampilkan error SQL
+    echo "Query error: " . $conn->error;
+    exit;
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -68,75 +86,91 @@ $result = $koneksi->query($query);
     <div class="logo"><a href="reserve_details.php"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
     <div class="nav-buttons">
         <button class="nav-btn"><a href="search.html"><img src="gambar/icons8-search-50.png" width="30" height="30"></a></button>
-        <button class="nav-btn"><a href="notif.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+        <button class="nav-btn"><a href="notif.php"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
         <button class="nav-btn"><a href="profile.php"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
     </div>
 </header>
 
 <main class="content-wrapper">
     <section class="content-section">
-        <h2>No reservations</h2>
+        <h2><?= $total ?> reservations</h2>
     </section>
 
     <!-- Section Recommendations -->
-    <section class="content-section">
-        <h2>Recommendations</h2>
-        <div class="scroll-container">
-            <button class="prev-btn">&#10094;</button>
-            <div class="content">
-                <?php
-                if ($result->num_rows > 0) {
-                    // Reset pointer and loop 3 kali untuk 3 section
-                    $result->data_seek(0);
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<div class="content-box">';
-                        echo '<img src="' . $row['logo'] . '" alt="' . $row['name'] . '">';
-                        echo '</div>';
-                    }
-                }
-                ?>
+    <section class="content-section" onclick="goToDetails('recommendations')">
+            <h2>Recommendations</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recommendations')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
             </div>
-            <button class="next-btn">&#10095;</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Section Recent Visits -->
-    <section class="content-section">
-        <h2>Recent visits</h2>
-        <div class="scroll-container">
-            <button class="prev-btn">&#10094;</button>
-            <div class="content">
-                <?php
-                $result->data_seek(0); // Reset pointer
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="content-box">';
-                    echo '<img src="' . $row['logo'] . '" alt="' . $row['name'] . '">';
-                    echo '</div>';
-                }
-                ?>
+        <!-- Recent Visits Section -->
+        <section class="content-section" onclick="goToDetails('recent')">
+            <h2>Recent visits</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('recent')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
             </div>
-            <button class="next-btn">&#10095;</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Section Favorites -->
-    <section class="content-section">
-        <h2>Favorites</h2>
-        <div class="scroll-container">
-            <button class="prev-btn">&#10094;</button>
-            <div class="content">
-                <?php
-                $result->data_seek(0); // Reset pointer
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="content-box">';
-                    echo '<img src="' . $row['logo'] . '" alt="' . $row['name'] . '">';
-                    echo '</div>';
-                }
-                ?>
+        <!-- Favorite Section -->
+        <section class="content-section" onclick="goToDetails('favorite')">
+            <h2>Favorites</h2>
+            <div class="scroll-container">
+                <button class="prev-btn">&#10094;</button>
+                <div class="content">
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/OMOTESANDO/WhatsApp Image 2025-03-03 at 18.14.15.jpeg" alt="Photo 3">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/KOORA/69e5c73f-0143-497f-9bc8-f47b3657c628.png" alt="Photo 2">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/POTTE/WhatsApp Image 2025-03-03 at 18.20.32 (2).jpeg" alt="Photo 4">
+                    </div>
+                    <div class="content-box" onclick="goToDetails('favorite')">
+                        <img src="gambar/ALLIGATOR/WhatsApp Image 2025-03-03 at 17.55.10 (1).jpeg" alt="Photo 1">
+                    </div>
+                </div>
+                <button class="next-btn">&#10095;</button>
             </div>
-            <button class="next-btn">&#10095;</button>
-        </div>
+        </section>
     </section>
 </main>
+
+<script>
+        function goToDetails(category) {
+            window.location.href = `${category}.html`;
+        }
+    </script>
 </body>
 </html>
