@@ -24,6 +24,10 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
+$id_user = $_SESSION['id_user']; // atau dari reservasi
+$pesan = "Reservasi berhasil ditambahkan.";
+$conn->query("INSERT INTO tb_notifikasi (pesan, id_user) VALUES ('$pesan', $id_user)");
+
 $reservations = [];
 
 while ($row = $result->fetch_assoc()) {
@@ -104,7 +108,7 @@ $conn->close();
 </head>
 <body>
 <header class="navbar">
-  <div class="logo"><a href="dashboard_owner.html"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
+  <div class="logo"><a href="dashboard_main.php"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
   <div class="nav-buttons">
     <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
     <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
@@ -162,7 +166,7 @@ $conn->close();
 </div>
 
 <div class="back-container">
-  <button class="btn btn-back" onclick="window.location.href='dashboard_main.html'">Back to Dashboard</button>
+  <button class="btn btn-back" onclick="window.location.href='dashboard_main.php'">Back to Dashboard</button>
 </div>
 
 <script>
