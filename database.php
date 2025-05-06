@@ -1,13 +1,6 @@
 <?php
-$host = "localhost";
-$user = "root";  
-$pass = "";      
-$dbname = "cafe_reservation";
-
-$conn = new mysqli($host, $user, $pass, $dbname);
-
-// Cek koneksi
+$conn = new mysqli("localhost", "root", "", "cafe_reservation"); // Ganti 'maindb' dengan nama database utama kamu
 if ($conn->connect_error) {
-    die("Koneksi Gagal: " . $conn->connect_error);
+    die("Connection failed (main): " . $conn->connect_error);
 }
 ?>

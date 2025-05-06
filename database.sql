@@ -17,7 +17,8 @@ CREATE TABLE dashboard_owner (
     seat_number VARCHAR(10) NOT NULL,
     time_from TIME NOT NULL,
     time_to TIME NOT NULL,
-    date_reservation DATE NOT NULL,
+    date_reservation DATE NOT NULL,    
+    status VARCHAR(20),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -33,3 +34,9 @@ CREATE TABLE reservation (
     status VARCHAR(20),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE tb_notifikasi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pesan VARCHAR(255),
+    id_user INT
+)

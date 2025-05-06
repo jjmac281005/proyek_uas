@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $timeFrom = isset($_POST['time_from']) ? $_POST['time_from'] : null;
     $timeTo = isset($_POST['time_to']) ? $_POST['time_to'] : null;
     $date_reservation = isset($_POST['date_reservation']) ? $_POST['date_reservation'] : null;
+    $status = 'Confirmed'; 
 
 
     // Validasi data
@@ -27,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Simpan ke tabel
-    $stmt = $conn->prepare("INSERT INTO dashboard_owner (username, cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssssss", $username, $cafe, $seat, $timeFrom, $timeTo, $date_reservation);
+    $stmt = $conn->prepare("INSERT INTO dashboard_owner (username, cafe_name, seat_number, time_from, time_to, date_reservation, status, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("sssssss", $username, $cafe, $seat, $timeFrom, $timeTo, $date_reservation, $status);
 
-    $stmu = $conn->prepare("INSERT INTO reservation (cafe_name, seat_number, time_from, time_to, date_reservation, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-    $stmu->bind_param("sssss", $cafe, $seat, $timeFrom, $timeTo, $date_reservation);
+    $stmu = $conn->prepare("INSERT INTO reservation (cafe_name, seat_number, time_from, time_to, date_reservation, status, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())");
+    $stmu->bind_param("ssssss", $cafe, $seat, $timeFrom, $timeTo, $date_reservation, $status);
 
     if ($stmt->execute()) {
         echo json_encode(["status" => "success"]);

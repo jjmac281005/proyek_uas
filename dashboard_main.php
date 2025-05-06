@@ -7,26 +7,50 @@ if (!$conn) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
 
+// Cek apakah user sudah login
+if (!isset($_SESSION['user_id'])) {
+    // Redirect jika belum login
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
 $total = 0;
 
-$today = date('Y-m-d'); // tanggal hari ini
+$today = date('Y-m-d');
 
-$sql = "SELECT COUNT(*) AS total_reservasi 
+// Gunakan prepared statement agar aman dari SQL injection
+$sql = "SELECT date_reservation, time_to 
         FROM reservation 
-        WHERE status IN ('confirmed', 'pending') 
-        AND date_reservation >= '$today'";
-$result = $conn->query($sql);
+        WHERE user_id = ? 
+        AND status IN ('confirmed', 'pending') 
+        AND date_reservation >= ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("is", $user_id, $today);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($result && $row = $result->fetch_assoc()) {
-    $total = $row['total_reservasi'];
+date_default_timezone_set('Asia/Jakarta');
+$now = new DateTime();
+$total = 0;
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $reservationEnd = new DateTime($row['date_reservation'] . ' ' . $row['time_to']);
+        if ($now <= $reservationEnd) {
+            $total++; // hanya tambahkan jika belum lewat time_to
+        }
+    }
 } else {
-    // Jika query gagal, tampilkan error SQL
     echo "Query error: " . $conn->error;
     exit;
 }
 
+$stmt->close();
 $conn->close();
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

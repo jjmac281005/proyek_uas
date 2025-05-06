@@ -48,11 +48,11 @@ $conn->close();
 <body>
   <header class="navbar">
     <div class="logo">
-      <a href="dashboard_main.html"><img src="gambar/logo_text.png" alt="Logo Text" /></a>
+      <a href="dashboard_main.php"><img src="gambar/logo_text.png" alt="Logo Text" /></a>
     </div>
     <div class="nav-buttons">
-      <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
-      <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+      <button class="nav-btn"><a href="notif_owner.php"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+      <button class="nav-btn"><a href="profile_owner.php"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
     </div>
   </header>
 

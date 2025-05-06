@@ -11,7 +11,7 @@ if (isset($_POST['id'])) {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        header("Location: dashboard_main.html");
+        header("Location: dashboard_main.php");
         exit();
     } else {
         echo "No rows updated. Check if the reservation exists or is owned by the current user.";

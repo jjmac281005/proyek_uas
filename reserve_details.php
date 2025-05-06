@@ -1,6 +1,7 @@
 <?php
 session_start();
-include 'database.php';
+include 'database.php'; // $conn_main
+include 'cafedb.php';   // $conn_cafe
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
@@ -8,28 +9,31 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-
 date_default_timezone_set('Asia/Jakarta');
 $current_time = new DateTime();
 
-// Ambil semua reservasi user yang belum di-cancel
+// Ambil semua reservasi user yang belum di-cancel dari database utama
 $stmt = $conn->prepare("
-    SELECT reservation.id, cafe_name, users.username, seat_number, time_from, time_to, date_reservation
-    FROM reservation
-    JOIN users ON users.id = reservation.user_id
-    WHERE reservation.user_id = ? AND status != 'Canceled'
-    ORDER BY date_reservation DESC, time_from DESC
+    SELECT r.id, r.cafe_name, u.username, r.seat_number, 
+           r.time_from, r.time_to, r.date_reservation
+    FROM reservation AS r
+    JOIN users AS u ON u.id = r.user_id
+    WHERE r.user_id = ? AND r.status != 'Canceled'
+    ORDER BY r.date_reservation DESC, r.time_from DESC
 ");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-$id_user = $_SESSION['id_user']; // atau dari reservasi
+$id_user = $user_id;
 $pesan = "Reservasi berhasil ditambahkan.";
-$conn->query("INSERT INTO tb_notifikasi (pesan, id_user) VALUES ('$pesan', $id_user)");
+$stmt_notif = $conn->prepare("INSERT INTO tb_notifikasi (pesan, id_user) VALUES (?, ?)");
+$stmt_notif->bind_param("si", $pesan, $id_user);
+$stmt_notif->execute();
+$stmt_notif->close();
+
 
 $reservations = [];
-
 while ($row = $result->fetch_assoc()) {
     $reservation_end = new DateTime($row['date_reservation'] . ' ' . $row['time_to']);
     $row['status'] = ($reservation_end > $current_time) ? 'Ongoing' : 'Expired';
@@ -37,11 +41,25 @@ while ($row = $result->fetch_assoc()) {
         date('j M Y', strtotime($row['date_reservation'])) . ', ' .
         substr($row['time_from'], 0, 5) . ' - ' .
         substr($row['time_to'], 0, 5);
+
+    // Ambil logo dari database cafedb
+    $stmt_logo = $conn_cafe->prepare("SELECT logo FROM cafes WHERE name = ?");
+    $stmt_logo->bind_param("s", $row['cafe_name']);
+    $stmt_logo->execute();
+    $logo_result = $stmt_logo->get_result();
+    if ($logo_row = $logo_result->fetch_assoc()) {
+        $row['logo'] = $logo_row['logo'];
+    } else {
+        $row['logo'] = 'gambar/default_logo.jpg'; // fallback
+    }
+    $stmt_logo->close();
+
     $reservations[] = $row;
 }
 
 $stmt->close();
 $conn->close();
+$conn_cafe->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,8 +128,8 @@ $conn->close();
 <header class="navbar">
   <div class="logo"><a href="dashboard_main.php"><img src="gambar/logo_text.png" alt="text Logo"></a></div>
   <div class="nav-buttons">
-    <button class="nav-btn"><a href="notif_owner.html"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
-    <button class="nav-btn"><a href="profile_owner.html"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
+    <button class="nav-btn"><a href="notif_owner.php"><img src="gambar/icons8-notifications-64.png" width="33" height="33"></a></button>
+    <button class="nav-btn"><a href="profile_owner.php"><img src="gambar/icons8-male-user-48.png" width="30" height="30"></a></button>
   </div>
 </header>
 
@@ -123,10 +141,10 @@ $conn->close();
       <div class="reservation-card">
         <div class="row">
           <div class="col-md-3">
-          <div class="logo-kafe">
-            <img src="gambar/ALLIGATOR/LOGO.jpeg" alt="Cafe Logo">
+            <div class="logo-kafe">
+              <img src="<?= htmlspecialchars($res['logo']) ?>" alt="Cafe Logo">
+            </div>
           </div>
-        </div>
           <div class="col-md-9">
             <div class="info-box"><?= htmlspecialchars($res['username']) ?></div>            
             <div class="info-box"><?= htmlspecialchars($res['cafe_name']) ?></div>
@@ -143,7 +161,6 @@ $conn->close();
                 <div class="cancel-container">
                   <button class="btn btn-cancel" onclick="showCancelPopup(<?= $index ?>)">Cancel</button>
                 </div>
-
                 <form method="POST" action="cancel_reservation.php">
                   <input type="hidden" name="id" value="<?= $res['id'] ?>">
                   <div id="cancelPopup<?= $index ?>" class="popup-overlay">
